@@ -38,6 +38,8 @@ Outputs land in `output/`: a summary table, monthly returns, a chart, and today'
 ### Momentum (2013 to 2026)
 ![Momentum backtest](images/momentum_backtest.png)
 
+*Bar chart shows average monthly return × 12. Text figures are CAGR (compounded), which runs slightly lower for more volatile groups.*
+
 **Did the top group beat the bottom?** Yes. The top momentum quintile returned 21.4% a year vs 15.8% for the bottom quintile. After estimated trading costs the top group still returned 20.7%, so turnover (about 24% a month) didn't eat much of the edge.
 
 **Is the pattern consistent across groups?** Mostly. Sharpe ratio climbs steadily from 0.81 in Q1 to 1.35 in Q5. Raw returns are less clean, since Q3 beat Q4, but the risk adjusted numbers line up the way momentum theory predicts.
