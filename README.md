@@ -29,10 +29,12 @@ Outputs land in `output/`: a summary table, monthly returns, a chart, and today'
 * **Equal weight, monthly rebalance.** Simple and transparent. Cost assumption is 10 bps per side on names that change.
 
 ## Limitations
-
 * **Survivorship bias.** The universe is today's large caps. Companies that shrank, were acquired, or went bankrupt are missing, which inflates historical returns. A proper test uses point in time index membership.
 * **Small universe.** 60 stocks means 12 per quintile, so results are noisy.
 * **Fundamentals are current only.** yfinance gives today's P/E, not historical, so valuation is used in the screener but not the backtest.
+* **Beta varies by window.** The screener uses a 1 year daily beta. XOM showed about -0.57, close to GuruFocus's 3 year figure (about -0.47), but sites using longer windows may differ.
+
+
 ## Findings
 
 ### Momentum (2013 to 2026)
