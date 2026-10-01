@@ -36,6 +36,7 @@ Outputs land in `output/`: a summary table, monthly returns, a chart, and today'
 ## Findings
 
 ### Momentum (2013 to 2026)
+![Momentum backtest](images/momentum_backtest.png)
 
 **Did the top group beat the bottom?** Yes. The top momentum quintile returned 21.4% a year vs 15.8% for the bottom quintile. After estimated trading costs the top group still returned 20.7%, so turnover (about 24% a month) didn't eat much of the edge.
 
