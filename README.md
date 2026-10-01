@@ -1,3 +1,38 @@
+# Equity Factor Research
+
+Tests whether common stock factors (momentum, low volatility, short term reversal) predicted next month returns for a universe of large US stocks, and screens today's universe using the same signals.
+
+## What it does
+
+**Backtest.** Every month end, stocks are ranked on a factor and split into five equal groups (quintiles). Each group is held equal weighted for the following month. If the factor works, the top quintile (Q5) should beat the bottom (Q1), and returns should rise fairly steadily from Q1 to Q5.
+
+Reported for each quintile, the Q5 minus Q1 spread, and SPY: CAGR, volatility, Sharpe ratio, max drawdown, hit rate. Q5 is also shown after an estimated trading cost based on actual turnover.
+
+**Screener.** Ranks current stocks on 12 month momentum, 6 month volatility, distance from 52 week high, trend (above 200 day average), and beta. With `--fundamentals` it adds forward P/E, price to book, ROE, debt to equity, and dividend yield, and blends them into a composite score.
+
+## Run it
+
+```bash
+pip install -r requirements.txt
+python run.py                      # momentum backtest + screener
+python run.py --factor low_vol     # other factors: low_vol, reversal
+python run.py --fundamentals       # slower, pulls valuation data per ticker
+python run.py --demo               # fake data, no internet needed
+```
+
+Outputs land in `output/`: a summary table, monthly returns, a chart, and today's screen.
+
+## Design choices
+
+* **No lookahead.** Factor scores at month end only use prices through that date. Returns are measured over the *next* month.
+* **12-1 momentum.** Skips the most recent month, the standard academic definition (Jegadeesh and Titman 1993), since one month returns tend to reverse.
+* **Equal weight, monthly rebalance.** Simple and transparent. Cost assumption is 10 bps per side on names that change.
+
+## Limitations
+
+* **Survivorship bias.** The universe is today's large caps. Companies that shrank, were acquired, or went bankrupt are missing, which inflates historical returns. A proper test uses point in time index membership.
+* **Small universe.** 60 stocks means 12 per quintile, so results are noisy.
+* **Fundamentals are current only.** yfinance gives today's P/E, not historical, so valuation is used in the screener but not the backtest.
 ## Findings
 
 ### Momentum (2013 to 2026)
